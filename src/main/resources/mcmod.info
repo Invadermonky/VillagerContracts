@@ -1,0 +1,16 @@
+[
+{
+  "modid": "villagercontracts",
+  "name": "Villager Contracts",
+  "description": "Adds an item that can change villager profession and career.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://www.curseforge.com/minecraft/mc-mods/villager-contracts",
+  "updateUrl": "",
+  "authorList": ["Invadermonky"],
+  "credits": "Authors of this project",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

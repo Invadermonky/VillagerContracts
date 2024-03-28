@@ -1,0 +1,10 @@
+# Config
+config.villagercontracts:validcontracts=Valid Contracts
+
+# Items
+item.villagercontracts:contract.name=Villager Contract
+
+# Tooltips
+tooltip.villagercontracts:desc=Rename at an anvil to specify villager career.
+tooltip.villagercontracts:info=Hold §bSHIFT§7 to display valid names.
+tooltip.villagercontracts:naming=Valid Contract Names:
