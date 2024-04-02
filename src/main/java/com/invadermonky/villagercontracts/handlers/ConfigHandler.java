@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -36,6 +37,9 @@ public class ConfigHandler {
     @Comment(ReferencesVC.validContractsComment)
     public static String[] validContracts = ReferencesVC.defaultContracts;
 
+    @Comment(ReferencesVC.entityBlacklistComment)
+    public static String[] entityBlacklist = ReferencesVC.defaultBlacklist;
+
     @Mod.EventBusSubscriber(modid = VillagerContracts.MOD_ID)
     public static class ConfigChangeListener {
         @SubscribeEvent
@@ -50,6 +54,9 @@ public class ConfigHandler {
             if(dumpVillagerInfo) {
                 dumpVillagerInfo();
             }
+
+            InteractHandler.entityBlacklist.clear();
+            InteractHandler.entityBlacklist.addAll(Arrays.asList(entityBlacklist));
 
             InteractHandler.contractMap.clear();
             for(String configStr : validContracts) {
@@ -69,7 +76,8 @@ public class ConfigHandler {
 
                 for(VillagerCareer career : careers) {
                     String careerName = VillagerHelper.getCareerName(career);
-                    LogHelper.info("\tProfession: " + professionName + "  :  Career: " + careerName);
+                    LogHelper.info("\tProfession: " + professionName + ", Career: " + careerName);
+                    LogHelper.info("\t\t=" + professionName + ";" + careerName);
                 }
             }
 

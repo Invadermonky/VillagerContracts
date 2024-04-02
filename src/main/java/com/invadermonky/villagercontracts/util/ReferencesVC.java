@@ -16,6 +16,10 @@ public class ReferencesVC {
             "Leatherworker=minecraft:butcher;leather",
             "Homer=minecraft:nitwit;nitwit"
     };
+    public static final String[] defaultBlacklist = new String[] {
+            "primitivemobs:sheepman",
+            "rats:plague_doctor"
+    };
 
     public static final String dumpVillagerInfoComment = "Prints the profession and career names of all registered villagers" +
             " to the log. This dump will occur on game restart and after the configuration has been changed in-game.";
@@ -30,4 +34,5 @@ public class ReferencesVC {
             "NOTE:\n" +
             "  Modded villagers that are not registered with Forge's VillagerProfession registry will not work with these contracts.\n" +
             "  Villagers with custom models may generate their correct trades, but will default to the farmer texture.";
+    public static final String entityBlacklistComment = "Blacklist of any villager entity ids where contract interactions should be disabled.";
 }

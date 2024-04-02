@@ -3,6 +3,7 @@ package com.invadermonky.villagercontracts.handlers;
 import com.invadermonky.villagercontracts.init.RegistryVC;
 import com.invadermonky.villagercontracts.util.VillagerHelper;
 import com.invadermonky.villagercontracts.util.VillagerInfo;
+import gnu.trove.set.hash.THashSet;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +21,7 @@ public class InteractHandler {
     public static final InteractHandler INSTANCE = new InteractHandler();
 
     public static TreeMap<String,VillagerInfo> contractMap = new TreeMap<>();
+    public static THashSet<String> entityBlacklist = new THashSet<>();
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onVillagerInteract(EntityInteract event) {
@@ -31,7 +33,8 @@ public class InteractHandler {
         if(world.isRemote || target == null || heldItem.isEmpty())
             return;
 
-        if(target instanceof EntityVillager && !((EntityVillager) target).isChild() && heldItem.getItem() == RegistryVC.villagerContract) {
+        if(target instanceof EntityVillager && !((EntityVillager) target).isChild() && !entityBlacklist.contains(target.getEntityString()) &&
+                heldItem.getItem() == RegistryVC.villagerContract) {
             String contractName = heldItem.getDisplayName().toLowerCase(Locale.ROOT);
 
             if(contractMap.containsKey(contractName)) {
