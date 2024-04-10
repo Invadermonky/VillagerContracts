@@ -98,6 +98,7 @@ public class VillagerHelper {
                     return villager;
                 } else {
                     loopControl++;
+                    villager.setDead();
                 }
             }
         }

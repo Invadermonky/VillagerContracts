@@ -17,8 +17,10 @@ public class ReferencesVC {
             "Homer=minecraft:nitwit;nitwit"
     };
     public static final String[] defaultBlacklist = new String[] {
+            "iceandfire:snowvillager",
             "primitivemobs:sheepman",
-            "rats:plague_doctor"
+            "rats:plague_doctor",
+            "toroquest:toroquest_toro_villager"
     };
 
     public static final String dumpVillagerInfoComment = "Prints the profession and career names of all registered villagers" +
