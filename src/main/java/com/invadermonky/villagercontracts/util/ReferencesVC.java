@@ -23,6 +23,8 @@ public class ReferencesVC {
             "toroquest:toroquest_toro_villager"
     };
 
+    public static final String disableAnvilRenamingComment = "Enabling this will disable contract renaming at an anvil and remove the associated tooltip.\n" +
+            "If this is enabled you will need to create custom recipes for named contracts using CraftTweaker's \"stack.withDisplayName(String name)\" function or something similar.";
     public static final String dumpVillagerInfoComment = "Prints the profession and career names of all registered villagers" +
             " to the log. This dump will occur on game restart and after the configuration has been changed in-game.";
     public static final String generateVillagerAttemptsComment = "Due to some Minecraft jank, villagers always generate " +

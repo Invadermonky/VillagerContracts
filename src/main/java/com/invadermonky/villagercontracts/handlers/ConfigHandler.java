@@ -26,6 +26,9 @@ import java.util.regex.Pattern;
 
 @Config(modid = VillagerContracts.MOD_ID)
 public class ConfigHandler {
+    @Comment(ReferencesVC.disableAnvilRenamingComment)
+    public static boolean disableAnvilRenaming = false;
+
     @Comment(ReferencesVC.dumpVillagerInfoComment)
     public static boolean dumpVillagerInfo = false;
 
@@ -55,10 +58,10 @@ public class ConfigHandler {
                 dumpVillagerInfo();
             }
 
-            InteractHandler.entityBlacklist.clear();
-            InteractHandler.entityBlacklist.addAll(Arrays.asList(entityBlacklist));
+            EventHandler.entityBlacklist.clear();
+            EventHandler.entityBlacklist.addAll(Arrays.asList(entityBlacklist));
 
-            InteractHandler.contractMap.clear();
+            EventHandler.contractMap.clear();
             for(String configStr : validContracts) {
                 parseConfiguredVillager(configStr);
             }
@@ -102,7 +105,7 @@ public class ConfigHandler {
                     VillagerProfession profession = VillagerHelper.getProfession(professionName);
                     VillagerCareer career = VillagerHelper.getCareer(profession, careerName);
                     VillagerInfo info = new VillagerInfo(identifier, profession, career);
-                    InteractHandler.contractMap.put(identifier.toLowerCase(Locale.ROOT), info);
+                    EventHandler.contractMap.put(identifier.toLowerCase(Locale.ROOT), info);
                 }
             }
 

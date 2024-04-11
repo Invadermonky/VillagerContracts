@@ -4,12 +4,16 @@ import com.invadermonky.villagercontracts.init.RegistryVC;
 import com.invadermonky.villagercontracts.util.VillagerHelper;
 import com.invadermonky.villagercontracts.util.VillagerInfo;
 import gnu.trove.set.hash.THashSet;
+import net.minecraft.client.gui.GuiRepair;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.ContainerRepair;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.GuiScreenEvent.KeyboardInputEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -17,8 +21,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.util.Locale;
 import java.util.TreeMap;
 
-public class InteractHandler {
-    public static final InteractHandler INSTANCE = new InteractHandler();
+public class EventHandler {
+    public static final EventHandler INSTANCE = new EventHandler();
 
     public static TreeMap<String,VillagerInfo> contractMap = new TreeMap<>();
     public static THashSet<String> entityBlacklist = new THashSet<>();
@@ -59,6 +63,21 @@ public class InteractHandler {
                 target.playSound(SoundEvents.ENTITY_VILLAGER_NO, 1.0f, 1.0f);
             }
             event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public void onItemRename(KeyboardInputEvent.Pre event) {
+        if(ConfigHandler.disableAnvilRenaming) {
+            GuiScreen gui = event.getGui();
+            if (gui instanceof GuiRepair) {
+                ContainerRepair container = ((GuiRepair)gui).anvil;
+                ItemStack inputLeft = container.inputSlots.getStackInSlot(0);
+
+                if(inputLeft.getItem() == RegistryVC.villagerContract && !inputLeft.getDisplayName().equals(container.repairedItemName)) {
+                    event.setCanceled(true);
+                }
+            }
         }
     }
 }

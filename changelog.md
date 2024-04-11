@@ -1,8 +1,8 @@
 # Villager Contracts Changelog
 
-## Version 1.12.2-1.1.1
+## Version 1.12.2-1.2.0
+- Added config option to disable Anvil renaming
 - Fixed a rare infinite villager spawn bug
-- Updated config entity blacklist with a few more entries
 
 
 ## Version 1.12.2-1.1.0

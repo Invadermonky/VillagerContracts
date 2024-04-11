@@ -1,7 +1,8 @@
 package com.invadermonky.villagercontracts.items;
 
 import com.invadermonky.villagercontracts.VillagerContracts;
-import com.invadermonky.villagercontracts.handlers.InteractHandler;
+import com.invadermonky.villagercontracts.handlers.ConfigHandler;
+import com.invadermonky.villagercontracts.handlers.EventHandler;
 import com.invadermonky.villagercontracts.util.StringHelper;
 import com.invadermonky.villagercontracts.util.VillagerInfo;
 import net.minecraft.client.gui.GuiScreen;
@@ -27,14 +28,17 @@ public class ItemVillagerContract extends Item {
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
-        if(GuiScreen.isShiftKeyDown()) {
-            tooltip.add(I18n.format(StringHelper.getLanguageKey("naming", "tooltip")));
-            for(VillagerInfo info : InteractHandler.contractMap.values()) {
-                tooltip.add("  - " + info.identifier);
+
+        if(!ConfigHandler.disableAnvilRenaming) {
+            if (GuiScreen.isShiftKeyDown()) {
+                tooltip.add(I18n.format(StringHelper.getLanguageKey("naming", "tooltip")));
+                for (VillagerInfo info : EventHandler.contractMap.values()) {
+                    tooltip.add("  - " + info.identifier);
+                }
+            } else {
+                tooltip.add(I18n.format(StringHelper.getLanguageKey("desc", "tooltip")));
+                tooltip.add(I18n.format(StringHelper.getLanguageKey("info", "tooltip")));
             }
-        } else {
-            tooltip.add(I18n.format(StringHelper.getLanguageKey("desc", "tooltip")));
-            tooltip.add(I18n.format(StringHelper.getLanguageKey("info", "tooltip")));
         }
     }
 }
