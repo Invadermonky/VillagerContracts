@@ -1,7 +1,7 @@
 [
 {
-  "modid": "villagercontracts",
-  "name": "Villager Contracts",
+  "modid": "${modid}",
+  "name": "${name}",
   "description": "Adds an item that can change villager profession and career.",
   "version": "${version}",
   "mcversion": "${mcversion}",

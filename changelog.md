@@ -1,4 +1,7 @@
 # Villager Contracts Changelog
+## Version 1.12.2-1.2.1
+- Fixed crash on dedicated servers
+
 
 ## Version 1.12.2-1.2.0
 - Added config option to disable Anvil renaming

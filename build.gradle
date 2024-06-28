@@ -134,6 +134,8 @@ if (project.use_access_transformer.toBoolean()) {
 
 processResources {
     // This will ensure that this task is redone when the versions change
+    inputs.property 'modid', project.mod_id
+    inputs.property 'name', project.mod_name
     inputs.property 'version', project.version
     inputs.property 'mcversion', project.minecraft.version
     
@@ -141,6 +143,8 @@ processResources {
     filesMatching(['mcmod.info', 'pack.mcmeta']) { fcd ->
         // Replace version and mcversion
         fcd.expand (
+                'modid': project.mod_id,
+                'name': project.mod_name,
                 'version': project.version,
                 'mcversion': project.minecraft.version
         )

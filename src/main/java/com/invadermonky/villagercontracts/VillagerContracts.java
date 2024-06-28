@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class VillagerContracts {
     public static final String MOD_ID = "villagercontracts";
     public static final String MOD_NAME = "Villager Contracts";
-    public static final String MOD_VERSION = "1.12.2-1.2.0";
+    public static final String MOD_VERSION = "1.12.2-1.2.1";
     public static final String MC_VERSION = "[1.12.2]";
 
     public static final String ProxyClientClass = "com.invadermonky.villagercontracts.proxy.ClientProxy";
